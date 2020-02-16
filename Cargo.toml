@@ -1,0 +1,18 @@
+[package]
+name = "alzheimer"
+version = "0.1.0"
+authors = ["Yu-Wei Wu <wusyong9104@gmail.com>"]
+edition = "2018"
+description = "Async implementation of brainfuck interpreter"
+license = "MIT"
+readme = "README.md"
+keywords = ["async", "await", "interpreter"]
+categories = ["asynchronous", "concurrency", "Command line utilities"]
+documentation = "https://docs.rs/alzheimer"
+homepage = "https://github.com/wusyong/Alzheimer"
+repository = "https://github.com/wusyong/Alzheimer"
+
+
+[dependencies.async-std]
+version = "1.5.0"
+features = ["attributes"]

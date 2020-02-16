@@ -21,7 +21,8 @@ impl IntepreterBuilder {
     pub async fn new(inputs: String) -> IntepreterBuilder {
         let mut token: Vec<Token> = Vec::new();
 
-        inputs.as_bytes().chunks(2).into_iter().for_each(|symbol| {
+        inputs.as_bytes().chunks(6).into_iter().for_each(|symbol| {
+
             match symbol {
                 &[228, 184, 137, 230, 176, 145] => token.push(Token::IncrementPtr),
                 &[228, 184, 187, 231, 190, 169] => token.push(Token::DecrementPtr),
@@ -33,9 +34,10 @@ impl IntepreterBuilder {
                 &[229, 164, 167, 229, 144, 140] => token.push(Token::LoopEnd),
                 _ => (),
             } 
+            dbg!(symbol);
         });
 
-
+        dbg!(inputs);
         IntepreterBuilder(token)
     }
 

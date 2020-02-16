@@ -21,19 +21,20 @@ impl IntepreterBuilder {
     pub async fn new(inputs: String) -> IntepreterBuilder {
         let mut token: Vec<Token> = Vec::new();
 
-        inputs.chars().into_iter().for_each(|symbol| {
+        inputs.as_bytes().chunks(2).into_iter().for_each(|symbol| {
             match symbol {
-                '>' => token.push(Token::IncrementPtr),
-                '<' => token.push(Token::DecrementPtr),
-                '+' => token.push(Token::Increment),
-                '-' => token.push(Token::Decrement),
-                '.' => token.push(Token::Output),
-                ',' => token.push(Token::Input),
-                '[' => token.push(Token::LoopStart),
-                ']' => token.push(Token::LoopEnd),
+                &[228, 184, 137, 230, 176, 145] => token.push(Token::IncrementPtr),
+                &[228, 184, 187, 231, 190, 169] => token.push(Token::DecrementPtr),
+                &[229, 144, 190, 233, 187, 168] => token.push(Token::Increment),
+                &[230, 137, 128, 229, 174, 151] => token.push(Token::Decrement),
+                &[228, 187, 165, 229, 187, 186] => token.push(Token::Output),
+                &[230, 176, 145, 229, 156, 139] => token.push(Token::Input),
+                &[228, 187, 165, 233, 128, 178] => token.push(Token::LoopStart),
+                &[229, 164, 167, 229, 144, 140] => token.push(Token::LoopEnd),
                 _ => (),
             } 
         });
+
 
         IntepreterBuilder(token)
     }
